@@ -23,9 +23,9 @@ def write_env_file():
 write_env_file()
 load_dotenv()
 
-API_ID = int(os.environ.get("API_ID", "8813038"))
-API_HASH = os.environ.get("API_HASH", "780fd96b159baa710dada78ff1621b54")
-OWNER_ID = int(os.environ.get("OWNER_ID", "2083503061"))
+API_ID = int(os.environ.get("API_ID", "977080"))
+API_HASH = os.environ.get("API_HASH", "0c20c4265501492a1513f91755acd42b")
+OWNER_ID = int(os.environ.get("OWNER_ID", "399726799"))
 DATABASE_URL = os.environ.get("DATABASE_URL")
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "USERBOT")
 SESSION_STRING = os.environ.get("SESSION_STRING")

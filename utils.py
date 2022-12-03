@@ -4,6 +4,7 @@ import contextlib
 from shortzy import Shortzy
 from config import BLACKLIST_WORDS, HOTSTAR_API_URL, SERIAL_SHORTENERS, VOOT_API_URL, ZEE5_API_URL, voot_headers, zee5_headers, hotstar_headers
 from datetime import datetime
+import cloudscraper
 
 async def get_serial_info(url):
 	headers = await get_headers(url)
@@ -57,7 +58,8 @@ async def get_headers(url):
 
 
 async def extract_date(string):
-	date = re.search("([1-9] |1[0-9]| 2[0-9]|3[0-1])(.|-)([1-9] |1[0-2])(.|-|)20[0-9][0-9]", string)
+	DATE_PATTERN = r"(\d{1,2})/(\d{1,2})/(\d{4})|(\d{4})-(\d{1,2})-(\d{1,2})|(\d{1,2})-(\d{1,2})-(\d{4})"
+	date = re.search(DATE_PATTERN, string)
 	return date.group() if date else None
 
 
@@ -76,7 +78,12 @@ async def get_short_link(link, serial_name):
 		if serial["serial_name"] == serial_name:
 			api, site = serial["api"], serial["site"]
 			shortzy = Shortzy(api, site)
-			return await shortzy.convert(link), serial["channel"], serial["image_url"]
+			try:
+				short_link = await shortzy.convert(link)
+			except Exception:
+				short_link = await get_shortlink(api, serial["site"], link)
+
+			return short_link, serial["channel"], serial["image_url"]
 	return 0,0,0
 
 async def get_cap(caption):
@@ -90,3 +97,10 @@ def filter_int(n_list:list)-> list:
 			list_of_numbers.append(int(el))
 
 	return list_of_numbers
+
+async def get_shortlink(api, site, link):
+	base_url = f'https://{site}/api'
+	params = {'api': api, 'url': link}
+	scraper = cloudscraper.create_scraper() 
+	r = scraper.get(base_url, params=params)
+	return r.json()["shortenedUrl"]

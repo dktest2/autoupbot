@@ -15,10 +15,14 @@ from utils import get_cap, get_serial_info, get_short_link
 @User.on_message(filters.chat(NOTIFICATION_BOT_USERNAME) & filters.regex(r'https?://[^\s]+'))
 async def rip_cmd_handler(c: Client, m: types.Message):
 	link = m.matches[0].group(0)
+	
+	if await db.get_links(link):
+		return 
+
 	fwd_msg = await c.send_message(WEB_DL_BOT_USERNAME, link)
 	await fwd_msg.reply(f"{RIP_COMMAND} {link}", quote=True)
 
-@User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & filters.regex("Checking Link..."))
+@User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & (filters.regex("Checking Link...") | filters.regex("Getting Data...⌛")))
 async def quality_cmd_handler(c: Client, m: types.Message):
 	link = m.reply_to_message.web_page.url
 	print("Starting quality button check... Sleeping for 10 seconds...")
@@ -33,21 +37,26 @@ async def quality_cmd_handler(c: Client, m: types.Message):
 
 	for button in q:
 		m = await c.get_messages(m.chat.id, m.id)
-		try:
-			await m.click(button)
-		except TimeoutError:
-			m = await c.get_messages(m.chat.id, m.id)
-			await m.click(button)
+		for i in m.reply_markup.inline_keyboard:
+			is_click = False
+			for j in i:
+				if j.text == button:
+					with contextlib.suppress(Exception):
+						await m.click(j.text)
+						is_click = True
+						break
+			if is_click:
+				break
 
 		await asyncio.sleep(2)
 
-
 @User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & filters.regex(type_txt))
 async def type_button_handler(_, m: types.Message):
-	with contextlib.suppress(TimeoutError):
-		await m.click(TYPE_BUTTON, timeout=10)
-	return
-
+	for i in m.reply_markup.inline_keyboard:
+		for j in i:
+			if j.text == TYPE_BUTTON:
+				with contextlib.suppress(Exception):
+					await m.click(j.text)
 
 @User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & filters.media)
 async def media_handler(c: Client, m: types.Message):
@@ -101,5 +110,3 @@ async def encode(string):
 	string_bytes = string.encode("ascii")
 	base64_bytes = base64.urlsafe_b64encode(string_bytes)
 	return (base64_bytes.decode("ascii")).strip("=")
-
-

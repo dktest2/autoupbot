@@ -54,9 +54,13 @@ FILE_STORE_BOT_USERNAME = os.environ.get("FILE_STORE_BOT_USERNAME")
 FILE_STORE_DB = int(os.environ.get("FILE_STORE_DB"))
 
 POST_TEMPLATE = """🎬 Tɪᴛʟᴇ : {title}
+
 📅 Date : {date}
+
 ➲ {short_link}
+
 ➲ {short_link}
+
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬"""
 
 SERIAL_SHORTENERS = []

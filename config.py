@@ -5,7 +5,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-CONFIG_FILE_URL = os.environ.get('CONFIG_FILE_URL', 'https://gist.github.com/Kousthubhbhat/e56cb4412f07ef07059c3541ae17aa86/raw')
+CONFIG_FILE_URL = os.environ.get('CONFIG_FILE_URL', 'https://gist.github.com/Bhatmanjusms/dffa17bb3e4194b7bc8f60aa2b485f6d/raw')
 # CONFIG_FILE_URL = None
 # CONFIG_FILE_URL = 'https://gist.githubusercontent.com/kevinnadar22/4b0a7faa46e0a7398a0050d6b2934a9e/raw' \
 # 	'/auto_upload_bot.env'
@@ -25,9 +25,9 @@ def write_env_file():
 write_env_file()
 load_dotenv()
 
-API_ID = int(os.environ.get("API_ID", "8813038"))
-API_HASH = os.environ.get("API_HASH", "780fd96b159baa710dada78ff1621b54")
-OWNER_ID = int(os.environ.get("OWNER_ID", "2083503061"))
+API_ID = int(os.environ.get("API_ID", "977080"))
+API_HASH = os.environ.get("API_HASH", "0c20c4265501492a1513f91755acd42b")
+OWNER_ID = int(os.environ.get("OWNER_ID", "399726799"))
 DATABASE_URL = os.environ.get("DATABASE_URL")
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "USERBOT")
 SESSION_STRING = os.environ.get("SESSION_STRING")

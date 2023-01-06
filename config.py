@@ -76,6 +76,7 @@ for a in serial_shorteners:
 for fruit in SERIAL_SHORTENERS:
 	print(json.dumps(fruit, indent=4))
 
+	
 CHANNELS = []
 
 for channel in channels:

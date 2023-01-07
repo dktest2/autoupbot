@@ -4,3 +4,5 @@ shortzy~=0.0.4
 python-dotenv~=0.20.0
 schedule
 motor
+requests
+cloudscraper

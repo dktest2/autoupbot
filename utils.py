@@ -98,9 +98,10 @@ def filter_int(n_list:list)-> list:
 
 	return list_of_numbers
 
+
 async def get_shortlink(api, site, link):
 	base_url = f'https://{site}/api'
 	params = {'api': api, 'url': link}
-	scraper = cloudscraper.create_scraper() 
+	scraper = cloudscraper.create_scraper()
 	r = scraper.get(base_url, params=params)
 	return r.json()["shortenedUrl"]

@@ -18,10 +18,12 @@ async def get_serial_info(url):
 		return serial_name, og_date
 
 	elif "zee5" in url:
-
 		serial_name = res["tvshow"]["title"]
-		og_date = res["extended"]["publish_datetime"].split()[0]
-		return serial_name, og_date
+		og_date = res["release_date"].split("T")[0]
+		date_string = og_date
+		date_object = datetime.strptime(date_string, "%Y-%m-%d")
+		new_date_string = date_object.strftime("%d-%m-%Y")
+		return serial_name, new_date_string
 
 	elif "hotstar" in url:
 		try:

@@ -1,0 +1,73 @@
+{
+    "name": "Post-Bot",
+    "description": "Post-Bot",
+    "keywords": ["telegram"],
+    "website": "https://github.com/Neutron-Bots",
+    "repository": "https://github.com/kevinnadar22/autoupbot-v2",
+    "env": {
+      "BOT_TOKEN": {
+        "description": "Your bot token from @botfather",
+        "value": ""
+      },
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": ""
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": ""
+      },
+      "OWNER_ID": {
+        "description": "ID of the Bot Owner",
+        "value": "",
+        "required": true
+      },
+      "DATABASE_NAME": {
+        "description": "Name of the database",
+        "value": "MdiskConvertor",
+        "required": false
+      },
+      "DATABASE_URL": {
+        "description": "Your database URI from mongodb.com",
+        "value": "",
+        "required": true
+      },
+      "BLACKLIST_WORDS": {
+        "description": "seperate by comma",
+        "value": "",
+        "required": false
+      },
+      "FILE_STORE_BOT_USERNAME": {
+        "value": "",
+        "required": true
+      },
+      "FILE_STORE_DB": {
+        "description": "database channel id of file store",
+        "value": "-100",
+        "required": false
+      },
+      "CHANNELS": {
+        "description": "voot:-1003334 -10383484, zee5: -1001769986368",
+        "value": "-100",
+        "required": false
+      },
+      "SERIAL_SHORTENERS": {
+        "description": "Voot:Ramchari:droplink.co:1aab74171e9891abd0ba799e3fd568c9598a79e1",
+        "value": "",
+        "required": false
+      }
+    },
+    "addons": [],
+    "buildpacks": [
+      {
+        "url": "heroku/python"
+      }
+    ],
+    "formation": {
+      "worker": {
+        "quantity": 1,
+        "size": "free"
+      }
+    }
+  }
+  

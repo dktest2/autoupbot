@@ -21,15 +21,15 @@ async def rip_cmd_handler(c: Client, m: types.Message):
 
 	fwd_msg = await c.send_message(WEB_DL_BOT_USERNAME, link)
 	await fwd_msg.reply(f"{RIP_COMMAND} {link}", quote=True)
-	
-	fwd_msg = await c.send_message(WEB_DL_BOT_USERNAME, link)
-	await fwd_msg.reply(f"{RIP_COMMAND} {link}", quote=True)
 
 @User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & (filters.regex("Checking Link...") | filters.regex("Getting Data...⌛")))
 async def quality_cmd_handler(c: Client, m: types.Message):
+	await asyncio.sleep(10)
+	m = await c.get_messages(m.chat.id, m.id)
+	
 	link = m.reply_to_message.web_page.url
 	print("Starting quality button check... Sleeping for 10 seconds...")
-	await asyncio.sleep(10)
+
 
 	if "voot" in link:
 		q = VOOT_QUALITY
@@ -64,8 +64,13 @@ async def type_button_handler(_, m: types.Message):
 @User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & filters.media)
 async def media_handler(c: Client, m: types.Message):
 	try:
-		serial_link = m.reply_to_message.web_page.url
 
+		with contextlib.suppress(Exception):
+			serial_link = m.reply_to_message.web_page.url
+		
+		if serial_link is None:
+			return
+		
 		if await db.get_links(serial_link):
 			return 
 

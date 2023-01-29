@@ -21,6 +21,9 @@ async def rip_cmd_handler(c: Client, m: types.Message):
 
 	fwd_msg = await c.send_message(WEB_DL_BOT_USERNAME, link)
 	await fwd_msg.reply(f"{RIP_COMMAND} {link}", quote=True)
+	
+	fwd_msg = await c.send_message(WEB_DL_BOT_USERNAME, link)
+	await fwd_msg.reply(f"{RIP_COMMAND} {link}", quote=True)
 
 @User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & (filters.regex("Checking Link...") | filters.regex("Getting Data...⌛")))
 async def quality_cmd_handler(c: Client, m: types.Message):

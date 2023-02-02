@@ -27,9 +27,8 @@ async def quality_cmd_handler(c: Client, m: types.Message):
 	await asyncio.sleep(10)
 	m = await c.get_messages(m.chat.id, m.id)
 	
-	link = m.reply_to_message.web_page.url
+	link = m.reply_to_message.reply_to_message.web_page.url
 	print("Starting quality button check... Sleeping for 10 seconds...")
-
 
 	if "voot" in link:
 		q = VOOT_QUALITY

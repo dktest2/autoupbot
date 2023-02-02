@@ -26,8 +26,9 @@ async def rip_cmd_handler(c: Client, m: types.Message):
 async def quality_cmd_handler(c: Client, m: types.Message):
 	await asyncio.sleep(10)
 	m = await c.get_messages(m.chat.id, m.id)
-	
-	link = m.reply_to_message.reply_to_message.web_page.url
+
+	print(m.reply_to_message.text)
+	link = m.reply_to_message.web_page.url if m.reply_to_message.web_page else m.reply_to_message.text
 	print("Starting quality button check... Sleeping for 10 seconds...")
 
 	if "voot" in link:

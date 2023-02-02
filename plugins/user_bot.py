@@ -64,7 +64,7 @@ async def type_button_handler(_, m: types.Message):
 @User.on_message(filters.chat(WEB_DL_BOT_USERNAME) & filters.media)
 async def media_handler(c: Client, m: types.Message):
 	try:
-
+		serial_link = None
 		with contextlib.suppress(Exception):
 			serial_link = m.reply_to_message.web_page.url
 		

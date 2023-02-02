@@ -27,8 +27,8 @@ async def quality_cmd_handler(c: Client, m: types.Message):
 	await asyncio.sleep(10)
 	m = await c.get_messages(m.chat.id, m.id)
 
-	print(m.reply_to_message.text)
 	link = m.reply_to_message.web_page.url if m.reply_to_message.web_page else m.reply_to_message.text
+	link = link.replace(f'/{RIP_COMMAND} ', '')
 	print("Starting quality button check... Sleeping for 10 seconds...")
 
 	if "voot" in link:
@@ -68,6 +68,8 @@ async def media_handler(c: Client, m: types.Message):
 		with contextlib.suppress(Exception):
 			serial_link = m.reply_to_message.web_page.url if m.reply_to_message.web_page else m.reply_to_message.text
 		
+		serial_link = serial_link.replace(f'/{RIP_COMMAND} ', '')
+
 		if serial_link is None:
 			return
 		

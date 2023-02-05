@@ -37,6 +37,8 @@ RIP_COMMAND = os.environ.get("RIP_COMMAND")
 VOOT_QUALITY = [i.strip() for i in os.environ.get("VOOT_QUALITY").split(",")] if os.environ.get("VOOT_QUALITY") else []
 HOTSTAR_QUALITY = [i.strip() for i in os.environ.get("HOTSTAR_QUALITY").split(",")] if os.environ.get("HOTSTAR_QUALITY") else []
 ZEE5_QUALITY = [i.strip() for i in os.environ.get("ZEE5_QUALITY").split(",")] if os.environ.get("ZEE5_QUALITY") else []
+SONYLIV_QUALITY = [i.strip() for i in os.environ.get("SONYLIV_QUALITY").split(",")] if os.environ.get("SONYLIV_QUALITY") else []
+
 TYPE_BUTTON = os.environ.get("TYPE_BUTTON")
 MANY_BOTS = [i.strip() for i in os.environ.get("MANY_BOTS").split()] if os.environ.get("MANY_BOTS") else []
 BLACKLIST_WORDS = os.environ.get("BLACKLIST_WORDS").split(",") if os.environ.get("BLACKLIST_WORDS") else [] # No space
@@ -99,10 +101,11 @@ zee5_headers = {'Host': 'gwapi.zee5.com',
 		'Origin': 'https://www.zee5.com', 'Sec-Fetch-Dest': 'empty', 'Sec-Fetch-Mode': 'cors',
 		'Sec-Fetch-Site': 'same-site', 'Sec-GPC': '1', 'Connection': 'keep-alive'}
 hotstar_headers= headers= {'User-Agent': ' Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:107.0) Gecko/20100101 Firefox/107.0', 'Accept': ' */*', 'Accept-Language': ' eng', 'Accept-Encoding': ' gzip, deflate, br', 'Referer': ' https://www.hotstar.com/', 'x-country-code': ' IN', 'x-platform-code': ' PCTV', 'x-client-code': ' LR', 'hotstarauth': ' st=1669222094~exp=1669228094~acl=/*~hmac=47eefd6950b2da45cfddeaba7db97cf32767ab1fa60cf17a96546a021c00909b', 'x-hs-usertoken': ' eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1bV9hY2Nlc3MiLCJleHAiOjE2Njk2MzY0NzMsImlhdCI6MTY2OTAzMTY3MywiaXNzIjoiVFMiLCJqdGkiOiIwYTkwYThlMGNmODE0YWQ1OWU5ODU4NzYzZjExYWNlZiIsInN1YiI6IntcImhJZFwiOlwiODk2MTU0NDVmZmVkNDVlM2FiYzY4NjFiZWIxMjAxZWZcIixcInBJZFwiOlwiMzQwNDBhN2E4MmRmNDJmN2EzM2MxMTBmZmM5ZjIyMmFcIixcIm5hbWVcIjpcIkd1ZXN0IFVzZXJcIixcImlwXCI6XCIxMTAuNDQuMTAuMjA0XCIsXCJjb3VudHJ5Q29kZVwiOlwiaW5cIixcImN1c3RvbWVyVHlwZVwiOlwibnVcIixcInR5cGVcIjpcImd1ZXN0XCIsXCJpc0VtYWlsVmVyaWZpZWRcIjpmYWxzZSxcImlzUGhvbmVWZXJpZmllZFwiOmZhbHNlLFwiZGV2aWNlSWRcIjpcIjg3M2ZkOGFjLWI2MzctNDAyNy04ZjMwLTc1NTZkMjhhZGMyMFwiLFwicHJvZmlsZVwiOlwiQURVTFRcIixcInZlcnNpb25cIjpcInYyXCIsXCJzdWJzY3JpcHRpb25zXCI6e1wiaW5cIjp7fX0sXCJpc3N1ZWRBdFwiOjE2NjkwMzE2NzM0MjN9IiwidmVyc2lvbiI6IjFfMCJ9.9WzjEvitAecX2qOct9gvSM-T7mimFymo3b-D7_C2_pM', 'Origin': ' https://www.hotstar.com', 'Connection': ' keep-alive', 'Sec-Fetch-Dest': ' empty', 'Sec-Fetch-Mode': ' cors', 'Sec-Fetch-Site': ' same-site', 'Sec-GPC': ' 1', 'TE': ' trailers'}
-
+sonyliv_headers = {'security_token': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzExOTI1MTYsImV4cCI6MTY3MjQ4ODUxNiwiYXVkIjoiKi5zb255bGl2LmNvbSIsImlzcyI6IlNvbnlMSVYiLCJzdWIiOiJzb21lQHNldGluZGlhLmNvbSJ9.S2e99rs_SynMy347baAIAZTod7r3u05ErL6u7Pvwqb2GF-CN28otD8ktIk3Hpgr2cb4pwkAlrPVeLOKtyW31i7pivYfbig9NsE_X41sRC5bnauL_Eo4XM89X9K-HR5g9zUB3tqKDIMEC1ysHWz7jES-Z-ALjkg-8Ip3U6fK9l2TyP_4_ibr9dMJL7UHf-TVec1ZdFh_nTUV-diF6P06SPDOLPNYuLha88LNb1wcBtiyKWFzAbJ3XGlgqbltGWsiXLqdFlaRp8aC4W8JH0f0kSIqdxbANt-sR--In-071uZ_BvkMjFS5e9BU07Ad9jMk7T5bAdGQ1vPq-JVlTUFQXC27a2bXV5LIynnaOQ27zyZcI6o97rLL0duZ8SOInfklK7xExNZ5LJMgB1GcxGf-VO-zm00I70hrwjQghANKorRFCeCXLg0NckeyJkI_ciL9LGgb4dN9VLH4qYx-C9tgNOAFa7A_NINlzCYIuUora2yynJ9sIIMUsZqaXdtt4OgiR_od243i9CXs2EoBFdoAqda-K6RnmWEkHsx2SzbqExoemUSh1Qq2fOvu5Q_vkAI2Pv-nXQ8aXnlIeeMiZ4cet_ieFKUqS6vuFDwCqgtkX_YeL6k9f3GteEDdy6J-sNBk8eiXLkl0IMUa0hB7wbpi_h6Im2GbRpGnocWAqmB6GJnA'}
 VOOT_API_URL = "https://psapi.voot.com/jio/voot/v1/voot-web/content/query/asset-details?&ids=include:{show_id}&responseType=common"
 ZEE5_API_URL = "https://gwapi.zee5.com/content/tvshow/{show_id}?translation=en&country=IN"
 HOTSTAR_API_URL = "https://api.hotstar.com/o/v1/show/detail?contentId={show_id}"
+SONY_LIV_API_URL = "https://apiv2.sonyliv.com/AGL/2.6/A/ENG/WEB/IN/MH/CONTENT/VIDEOURL/VOD/{show_id}?kids_safe=false"
 
 LIST_TEMPLATE = """2️⃣3️⃣🗡1️⃣1️⃣🗡2️⃣0️⃣2️⃣2️⃣
 ▬▬▬▬▬▬▬ ◆ ▬▬▬▬▬▬▬▬

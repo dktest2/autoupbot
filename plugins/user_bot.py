@@ -8,7 +8,7 @@ from pyrogram.errors import FloodWait
 
 from bot import User
 from config import CHANNELS, FILE_STORE_BOT_USERNAME, FILE_STORE_DB, HOTSTAR_QUALITY, MANY_BOTS, NOTIFICATION_BOT_USERNAME, \
-	POST_TEMPLATE, RIP_COMMAND, TYPE_BUTTON, VOOT_QUALITY, WEB_DL_BOT_USERNAME, ZEE5_QUALITY, type_txt
+	POST_TEMPLATE, RIP_COMMAND, TYPE_BUTTON, VOOT_QUALITY, WEB_DL_BOT_USERNAME, ZEE5_QUALITY, type_txt, SONYLIV_QUALITY
 from utils import get_cap, get_serial_info, get_short_link
 
 
@@ -37,6 +37,8 @@ async def quality_cmd_handler(c: Client, m: types.Message):
 		q = ZEE5_QUALITY
 	elif "hotstar" in link:
 		q = HOTSTAR_QUALITY
+	elif "sonyliv" in link:
+		q = SONYLIV_QUALITY
 
 	for button in q:
 		m = await c.get_messages(m.chat.id, m.id)

@@ -97,7 +97,7 @@ async def get_req_url(url):
     elif "hotstar.com" in url:
         show_id = filter_int(url.split("/"))
         return HOTSTAR_API_URL.format(show_id=show_id[0])
-    elif "sonliv" in url:
+    elif "sonyliv" in url:
         show_id = url.split("/")[-1]
         return SONY_LIV_API_URL.format(show_id=show_id)
 

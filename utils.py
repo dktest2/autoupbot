@@ -8,6 +8,7 @@ import cloudscraper
 from bs4 import BeautifulSoup
 import requests
 
+
 async def get_serial_info(url):
     headers = await get_headers(url)
     req_url = await get_req_url(url)
@@ -56,8 +57,9 @@ async def get_serial_info(url):
         title = title.split(" - ")[0].replace("Watch ", "").strip()
 
         return title, date
-    
+
     elif "sunnxt" in url:
+        print(f"SUNNXT REQ {url}")
         response = requests.get(url)
         res = response.json()
         data = res["results"][0]
@@ -112,8 +114,6 @@ async def get_req_url(url):
         return SONY_LIV_API_URL.format(show_id=show_id)
     elif "sunnxt" in url:
         return SUNNXT_API_URL.format(show_id=show_id)
-    
-
 
 
 async def get_short_link(link, serial_name):

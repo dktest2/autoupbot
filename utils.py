@@ -64,7 +64,7 @@ async def get_serial_info(url):
         title = data["generalInfo"]["title"]
         date = data["content"]["releaseDate"]
         date = datetime.fromisoformat(date[:-1])
-        human_readable = date.strftime('%B %d, %Y - %I:%M %p')
+        human_readable = date.strftime('%B %d, %Y')
         return title, human_readable
 
 

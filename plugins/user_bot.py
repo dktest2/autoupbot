@@ -30,7 +30,7 @@ async def quality_cmd_handler(c: Client, m: types.Message):
 	link = m.reply_to_message.web_page.url if m.reply_to_message.web_page else m.reply_to_message.text
 	link = link.replace(f'/{RIP_COMMAND} ', '')
 	print("Starting quality button check... Sleeping for 10 seconds...")
-
+	q = []
 	if "voot" in link:
 		q = VOOT_QUALITY
 	elif "zee5" in link:
@@ -39,8 +39,11 @@ async def quality_cmd_handler(c: Client, m: types.Message):
 		q = HOTSTAR_QUALITY
 	elif "sonyliv" in link:
 		q = SONYLIV_QUALITY
-	elif "sun nxt" in link:
+	elif "sunnxt" in link:
 		q = SUNNXT_QUALITY
+
+	if not q:
+		return
 
 	for button in q:
 		m = await c.get_messages(m.chat.id, m.id)

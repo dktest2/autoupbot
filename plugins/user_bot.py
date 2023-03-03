@@ -73,9 +73,11 @@ async def media_handler(c: Client, m: types.Message):
 	try:
 		serial_link = None
 		with contextlib.suppress(Exception):
-			serial_link = m.reply_to_message.web_page.url if m.reply_to_message.web_page else m.reply_to_message.text
+			serial_link = m.reply_to_message.web_page.url if m.reply_to_message.web_page else m.reply_to_message.text 
 		
-		serial_link = serial_link.replace(f'/{RIP_COMMAND} ', '')
+		serial_link = serial_link.replace(f'{RIP_COMMAND} ', '')
+
+		print("Serial Link: ", serial_link)
 
 		if serial_link is None:
 			return

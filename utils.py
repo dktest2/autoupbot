@@ -59,7 +59,7 @@ async def get_serial_info(url):
         return title, date
 
     elif "sunnxt" in url:
-        print(f"SUNNXT REQ {url}")
+        print(f"SUNNXT REQ {req_url}")
         data = res["results"][0]
         title = data["generalInfo"]["title"]
         date = data["content"]["releaseDate"]
@@ -110,7 +110,7 @@ async def get_req_url(url):
     elif "sonyliv" in url:
         show_id = url.split("/")[-1]
         return SONY_LIV_API_URL.format(show_id=show_id)
-    elif "sunnxt" in url:
+    elif "sunnxt.com" in url:
         return SUNNXT_API_URL.format(show_id=show_id)
 
 

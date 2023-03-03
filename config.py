@@ -107,7 +107,7 @@ VOOT_API_URL = "https://psapi.voot.com/jio/voot/v1/voot-web/content/query/asset-
 ZEE5_API_URL = "https://gwapi.zee5.com/content/tvshow/{show_id}?translation=en&country=IN"
 HOTSTAR_API_URL = "https://api.hotstar.com/o/v1/show/detail?contentId={show_id}"
 SONY_LIV_API_URL = "https://apiv2.sonyliv.com/AGL/2.6/A/ENG/WEB/IN/MH/CONTENT/VIDEOURL/VOD/{show_id}?kids_safe=false"
-SUNNXT_API_URL = "https://pwaapi.sunnxt.com/content/v3/contentDetail/{show_id}/?level=devicemax&fields=contents,images"
+SUNNXT_API_URL = "https://pwaapi.sunnxt.com/content/v3/contentDetail/{show_id}/?level=devicemax&fields=contents,images,generalInfo"
 
 
 LIST_TEMPLATE = """2️⃣3️⃣🗡1️⃣1️⃣🗡2️⃣0️⃣2️⃣2️⃣

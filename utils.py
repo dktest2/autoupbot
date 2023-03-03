@@ -60,8 +60,6 @@ async def get_serial_info(url):
 
     elif "sunnxt" in url:
         print(f"SUNNXT REQ {url}")
-        response = requests.get(url)
-        res = response.json()
         data = res["results"][0]
         title = data["generalInfo"]["title"]
         date = data["content"]["releaseDate"]

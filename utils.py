@@ -2,7 +2,7 @@ import re
 import aiohttp
 import contextlib
 from shortzy import Shortzy
-from config import BLACKLIST_WORDS, HOTSTAR_API_URL, SERIAL_SHORTENERS, VOOT_API_URL, ZEE5_API_URL, voot_headers, zee5_headers, hotstar_headers, SONY_LIV_API_URL, sonyliv_headers
+from config import BLACKLIST_WORDS, HOTSTAR_API_URL, SERIAL_SHORTENERS, SUNNXT_API_URL, VOOT_API_URL, ZEE5_API_URL, voot_headers, zee5_headers, hotstar_headers, SONY_LIV_API_URL, sonyliv_headers
 from datetime import datetime
 import cloudscraper
 from bs4 import BeautifulSoup
@@ -56,6 +56,16 @@ async def get_serial_info(url):
         title = title.split(" - ")[0].replace("Watch ", "").strip()
 
         return title, date
+    
+    elif "sunnxt" in url:
+        response = requests.get(url)
+        res = response.json()
+        data = res["results"][0]
+        title = data["generalInfo"]["title"]
+        date = data["content"]["releaseDate"]
+        date = datetime.fromisoformat(date[:-1])
+        human_readable = date.strftime('%B %d, %Y - %I:%M %p')
+        return title, human_readable
 
 
 def unix_to_date(unix):
@@ -100,6 +110,10 @@ async def get_req_url(url):
     elif "sonyliv" in url:
         show_id = url.split("/")[-1]
         return SONY_LIV_API_URL.format(show_id=show_id)
+    elif "sunnxt" in url:
+        return SUNNXT_API_URL.format(show_id=show_id)
+    
+
 
 
 async def get_short_link(link, serial_name):

@@ -38,6 +38,7 @@ VOOT_QUALITY = [i.strip() for i in os.environ.get("VOOT_QUALITY").split(",")] if
 HOTSTAR_QUALITY = [i.strip() for i in os.environ.get("HOTSTAR_QUALITY").split(",")] if os.environ.get("HOTSTAR_QUALITY") else []
 ZEE5_QUALITY = [i.strip() for i in os.environ.get("ZEE5_QUALITY").split(",")] if os.environ.get("ZEE5_QUALITY") else []
 SONYLIV_QUALITY = [i.strip() for i in os.environ.get("SONYLIV_QUALITY").split(",")] if os.environ.get("SONYLIV_QUALITY") else []
+SUNNXT_QUALITY = [i.strip() for i in os.environ.get("SUNNXT_QUALITY").split(",")] if os.environ.get("SUNNXT_QUALITY") else []
 
 TYPE_BUTTON = os.environ.get("TYPE_BUTTON")
 MANY_BOTS = [i.strip() for i in os.environ.get("MANY_BOTS").split()] if os.environ.get("MANY_BOTS") else []
@@ -106,6 +107,8 @@ VOOT_API_URL = "https://psapi.voot.com/jio/voot/v1/voot-web/content/query/asset-
 ZEE5_API_URL = "https://gwapi.zee5.com/content/tvshow/{show_id}?translation=en&country=IN"
 HOTSTAR_API_URL = "https://api.hotstar.com/o/v1/show/detail?contentId={show_id}"
 SONY_LIV_API_URL = "https://apiv2.sonyliv.com/AGL/2.6/A/ENG/WEB/IN/MH/CONTENT/VIDEOURL/VOD/{show_id}?kids_safe=false"
+SUNNXT_API_URL = "https://pwaapi.sunnxt.com/content/v3/contentDetail/{show_id}/?level=devicemax&fields=contents,images"
+
 
 LIST_TEMPLATE = """2️⃣3️⃣🗡1️⃣1️⃣🗡2️⃣0️⃣2️⃣2️⃣
 ▬▬▬▬▬▬▬ ◆ ▬▬▬▬▬▬▬▬

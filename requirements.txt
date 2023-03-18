@@ -6,3 +6,4 @@ schedule
 motor
 requests
 cloudscraper
+bs4
